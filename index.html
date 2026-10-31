@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230E1A14'/%3E%3Cpath d='M44 20c-4-5-12-6-17-2-5 4-3 10 3 13l8 3c6 3 8 9 2 13-5 4-13 2-17-3' fill='none' stroke='%23C9F26A' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Slush — The calm way to use Sui">
+<meta property="og:description" content="Swap, stake and explore Sui from one calm, secure wallet.">
+<meta property="og:image" content="https://YOUR-SITE.vercel.app/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://YOUR-SITE.vercel.app/assets/og.png">
+<title>Slush — The calm way to use Sui</title>
+<meta name="description" content="Swap, stake and explore Sui from one calm, secure wallet.">
+<style>
+@font-face{font-family:'Aeonik Pro';src:url(assets/fonts/aeonik-500.ttf) format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'Aeonik Pro';src:url(assets/fonts/aeonik-700.ttf) format('truetype');font-weight:700;font-display:swap}
+:root{
+  --ink:#0E1A14;--ink-2:#17271F;--cream:#F2EEE3;--paper:#FAF8F2;--line:rgba(14,26,20,.14);
+  --lime:#C9F26A;--coral:#FF6A47;--sky:#BCDDFF;--mute:#5B6A62;
+  --f:'Aeonik Pro',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r:28px;--ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--f);font-weight:500;background:var(--paper);color:var(--ink);line-height:1.45;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+h1,h2,h3{font-weight:700;letter-spacing:-.045em;line-height:.96}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:99px;font-weight:700;font-size:16px;letter-spacing:-.01em;border:1.5px solid var(--ink);transition:transform .35s var(--ease),background .2s,color .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn--ink{background:var(--ink);color:var(--paper)}.btn--ink:hover{background:var(--ink-2)}
+.btn--lime{background:var(--lime);border-color:var(--ink)}
+.btn--ghost{background:transparent}.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+.btn svg{width:16px;height:16px}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:12px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:24px;letter-spacing:-.05em}
+.brand i{width:34px;height:34px;border-radius:11px;background:var(--ink);display:grid;place-items:center}
+.brand i svg{width:20px;height:20px}
+.links{display:flex;gap:6px}
+.links a{padding:10px 16px;border-radius:99px;font-size:15px;transition:background .2s}
+.links a:hover{background:var(--cream)}
+.nav .btn{height:46px;padding:0 20px;font-size:15px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:none;font:700 22px var(--f)}
+
+/* hero */
+.hero{padding:56px 0 40px}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(56px,8.4vw,128px);margin:22px 0 26px}
+.hero h1 em{font-style:normal;background:var(--lime);padding:0 .12em;border-radius:.16em;display:inline-block;transform:rotate(-2deg)}
+.hero p.lead{font-size:clamp(18px,1.6vw,22px);max-width:30em;color:var(--mute);margin-bottom:32px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px}
+.proof{display:flex;gap:34px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.proof b{display:block;font-size:34px;letter-spacing:-.05em;line-height:1}
+.proof span{font-size:14px;color:var(--mute)}
+.stage{position:relative;aspect-ratio:1/1.08;background:var(--lime);border-radius:44px;overflow:hidden;border:1.5px solid var(--ink)}
+.stage::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 26px,rgba(14,26,20,.06) 26px 28px)}
+.stage .ph{position:absolute;left:50%;bottom:-6%;width:88%;transform:translateX(-50%);filter:drop-shadow(0 30px 40px rgba(14,26,20,.25))}
+.fl{position:absolute;animation:bob 6s ease-in-out infinite}
+.fl img{width:100%}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(5deg)}}
+.chip{position:absolute;background:var(--paper);border:1.5px solid var(--ink);border-radius:18px;padding:12px 16px;font-size:14px;line-height:1.2;animation:bob 7s ease-in-out infinite}
+.chip b{display:block;font-size:20px;letter-spacing:-.04em}
+
+/* ticker */
+.ticker{border-block:1.5px solid var(--ink);background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap}
+.ticker div{display:inline-flex;gap:46px;padding:16px 0;animation:tick 38s linear infinite;font-weight:700;letter-spacing:-.02em;font-size:20px}
+.ticker span::after{content:"✦";margin-left:46px;color:var(--lime)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:clamp(72px,9vw,130px) 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:52px;flex-wrap:wrap}
+.head h2{font-size:clamp(42px,6vw,88px);max-width:11em;margin-top:18px}
+.head p{max-width:26em;color:var(--mute)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.cell{position:relative;border-radius:var(--r);padding:30px;overflow:hidden;border:1.5px solid var(--ink);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .5s var(--ease)}
+.cell:hover{transform:translateY(-6px)}
+.cell h3{font-size:clamp(30px,3.2vw,46px)}
+.cell p{max-width:21em;margin-top:12px;font-size:16px;opacity:.78}
+.c1{grid-column:span 7;background:var(--ink);color:var(--paper);min-height:420px}
+.c2{grid-column:span 5;background:var(--sky)}
+.c3{grid-column:span 4;background:var(--coral)}
+.c4{grid-column:span 4;background:var(--cream)}
+.c5{grid-column:span 4;background:var(--lime)}
+.cell .art{position:absolute;right:16px;bottom:16px;width:48%;max-width:340px;border-radius:24px;border:1.5px solid var(--ink)}
+.c1 .art{width:44%;max-width:400px}
+.c1 div{max-width:46%}.c2{min-height:470px}.c2 .art{width:46%}
+.tag{display:inline-block;padding:7px 14px;border-radius:99px;border:1.5px solid currentColor;font-size:13px;font-weight:700;margin-bottom:18px;width:max-content}
+.c3 .fl,.c4 .fl,.c5 .fl{top:22px!important;bottom:auto!important;right:22px!important;width:26%!important}
+.c3 p,.c4 p,.c5 p{max-width:100%}.c3 h3,.c4 h3,.c5 h3{max-width:68%}
+
+/* steps */
+.steps{background:var(--ink);color:var(--paper);border-radius:44px;margin:0 16px;padding:clamp(56px,7vw,100px) 0}
+.steps .head p{color:rgba(250,248,242,.66)}
+.steps .eyebrow{color:rgba(250,248,242,.66)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{border-top:1.5px solid rgba(250,248,242,.3);padding-top:26px;counter-increment:s}
+.step::before{content:"0" counter(s);display:block;font-size:76px;font-weight:700;letter-spacing:-.06em;color:var(--lime);line-height:1;margin-bottom:22px}
+.step h3{font-size:30px;margin-bottom:12px}
+.step p{color:rgba(250,248,242,.68);max-width:22em}
+
+/* earn */
+.earn .box{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.big{border-radius:var(--r);border:1.5px solid var(--ink);padding:40px;background:var(--cream);display:flex;flex-direction:column;justify-content:space-between;min-height:440px}
+.big .num{font-size:clamp(90px,12vw,190px);font-weight:700;letter-spacing:-.07em;line-height:.8}
+.big .num small{font-size:.38em;letter-spacing:-.04em}
+.big.alt{background:var(--lime);position:relative;overflow:hidden}
+.big.alt img.k{position:absolute;right:20px;bottom:20px;width:50%;border-radius:26px;border:1.5px solid var(--ink)}
+.big.alt>div{max-width:46%;position:relative;z-index:2}
+.list{margin-top:18px;display:grid;gap:10px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border:1.5px solid var(--ink);border-radius:18px;background:var(--paper);transition:transform .35s var(--ease)}
+.row:hover{transform:translateX(6px)}
+.row b{letter-spacing:-.03em}.row span{font-weight:700;color:#1A7A47}
+
+/* platforms */
+.plat{background:var(--cream)}
+.tabs{display:inline-flex;padding:6px;border:1.5px solid var(--ink);border-radius:99px;background:var(--paper);margin-bottom:34px}
+.tabs button{font:700 15px var(--f);padding:12px 24px;border-radius:99px;border:0;background:none;cursor:pointer;color:var(--ink);transition:background .25s,color .25s}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+.pane{display:none;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.pane.on{display:grid;animation:in .6s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(16px)}}
+.pane h3{font-size:clamp(36px,4.6vw,66px);margin-bottom:18px}
+.pane p{color:var(--mute);max-width:26em;margin-bottom:26px}
+.pane .art{border-radius:36px;border:1.5px solid var(--ink);overflow:hidden;background:var(--sky)}
+.stores{display:flex;gap:12px;flex-wrap:wrap}
+.store{display:flex;align-items:center;gap:10px;padding:10px 18px 10px 12px;border:1.5px solid var(--ink);border-radius:16px;background:var(--paper);font-weight:700;font-size:15px;transition:transform .35s var(--ease)}
+.store:hover{transform:translateY(-3px)}
+.store img{width:30px;height:30px}
+.qr{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:14px;color:var(--mute)}
+.qr img{width:92px;border-radius:14px;border:1.5px solid var(--ink)}
+
+/* humans */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hc{border:1.5px solid var(--ink);border-radius:var(--r);padding:30px;min-height:360px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:transform .5s var(--ease)}
+.hc:hover{transform:rotate(-1.2deg) translateY(-6px)}
+.hc h3{font-size:clamp(30px,3vw,42px)}
+.hc p{margin-top:12px;opacity:.8}
+.hc img{width:120px;align-self:flex-end;animation:bob 7s ease-in-out infinite}
+.hc:nth-child(1){background:var(--lime)}.hc:nth-child(2){background:var(--sky)}.hc:nth-child(3){background:var(--coral)}
+
+/* eco */
+.eco{padding-top:0}
+.tiles{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
+.tiles img{border-radius:24px;border:1.5px solid var(--ink);background:var(--cream);aspect-ratio:1;object-fit:cover;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.tiles img:hover{transform:scale(1.1) rotate(-5deg)}
+
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}
+.faq h2{font-size:clamp(42px,5.6vw,80px);margin-top:18px}
+details{border-bottom:1.5px solid var(--ink);padding:24px 0}
+details:first-child{border-top:1.5px solid var(--ink)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.035em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:32px;line-height:.8;transition:transform .4s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:14px;color:var(--mute);max-width:36em}
+
+/* cta + footer */
+.cta{padding-bottom:60px}
+.cta .panel{position:relative;background:var(--lime);border:1.5px solid var(--ink);border-radius:48px;padding:clamp(40px,7vw,100px);overflow:hidden}
+.cta h2{font-size:clamp(52px,8vw,124px);max-width:6.2em;position:relative;z-index:2}
+.cta .row2{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px;position:relative;z-index:2}
+.cta .fl:nth-of-type(1){right:7%;top:12%;width:clamp(90px,15vw,230px)}
+.cta .fl:nth-of-type(2){right:20%;bottom:10%;width:clamp(70px,10vw,150px);animation-delay:-2s}
+footer{padding:20px 0 40px}
+footer .cols{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding:40px 0;border-top:1.5px solid var(--ink)}
+footer h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+footer a{display:block;padding:4px 0}footer a:hover{text-decoration:underline}
+footer .fine{font-size:13px;color:var(--mute);max-width:44em}
+.word{font-size:clamp(110px,26vw,380px);font-weight:700;letter-spacing:-.07em;line-height:.74;text-align:center;margin-top:10px;overflow:hidden;color:var(--ink)}
+
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .links,.nav .btn{display:none}.burger{display:block}
+  .nav.open .links{display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;background:var(--paper);padding:14px 24px 22px;border-bottom:1.5px solid var(--ink)}
+  .hero .grid,.earn .box,.pane.on,.faq{grid-template-columns:1fr}
+  .c1,.c2,.c3,.c4,.c5{grid-column:span 12}
+  .sgrid,.three{grid-template-columns:1fr}
+  .tiles{grid-template-columns:repeat(4,1fr)}
+  .proof{gap:20px;flex-wrap:wrap}
+  .stage{aspect-ratio:1/1}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><i><svg viewBox="0 0 48 48" fill="none" stroke="#C9F26A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M33 14c-3-4-9-5-13-2-4 3-3 8 2 10l6 2c5 2 6 7 2 10-4 3-10 2-13-2"/></svg></i>Slush</a>
+    <nav class="links" aria-label="Primary">
+      <a href="#features">Features</a><a href="#how">How it works</a><a href="#earn">Earn</a><a href="#get">Download</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--ink" href="#get">Launch app</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">+</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">The wallet for Sui</span>
+      <h1>Crypto, <em>calm</em> and in your hands.</h1>
+      <p class="lead">Swap, stake and explore Sui from one secure wallet. No jargon, no maze of tabs, just your money doing what you asked.</p>
+      <div class="cta">
+        <a class="btn btn--ink" href="#get">Download for Chrome <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn--ghost" href="#get">Launch web app</a>
+      </div>
+      <div class="proof">
+        <div><b>1M+</b><span>wallets created</span></div>
+        <div><b>36%</b><span>top strategy APY*</span></div>
+        <div><b>3</b><span>ways to use it</span></div>
+      </div>
+    </div>
+    <div class="stage">
+      <img class="ph" src="assets/phone-mobile.svg" alt="Slush wallet on mobile" width="538" height="538">
+      <div class="fl" style="left:6%;top:9%;width:20%"><img src="assets/3d-rocket.png" alt=""></div>
+      <div class="fl" style="right:6%;top:14%;width:22%;animation-delay:-2s"><img src="assets/3d-megaphone.png" alt=""></div>
+      <div class="chip" style="left:5%;bottom:22%;animation-delay:-1s"><span>Swap complete</span><b>+ 245 SUI</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>Swap</span><span>Stake</span><span>Earn</span><span>Explore</span><span>Send</span><span>Buy &amp; sell</span><span>Swap</span><span>Stake</span><span>Earn</span><span>Explore</span><span>Send</span><span>Buy &amp; sell</span>
+  <span>Swap</span><span>Stake</span><span>Earn</span><span>Explore</span><span>Send</span><span>Buy &amp; sell</span><span>Swap</span><span>Stake</span><span>Earn</span><span>Explore</span><span>Send</span><span>Buy &amp; sell</span>
+</div></div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="eyebrow">Features</span><h2>Everything Sui, one tidy place.</h2></div>
+      <p>Built for people who want their crypto to feel as simple as a banking app, without giving up control.</p>
+    </div>
+    <div class="bento">
+      <article class="cell c1 rv"><div><span class="tag">DeFi</span><h3>Put your coins to work.</h3><p>Browse vetted Sui protocols and strategies, then deposit in a couple of taps.</p></div><img class="art" src="assets/defi-coins.svg" alt=""></article>
+      <article class="cell c2 rv"><div><span class="tag">Self-custody</span><h3>Your keys. Always.</h3><p>Secured on your device. We never hold your funds.</p></div><img class="art" src="assets/earn-key.svg" alt=""></article>
+      <article class="cell c3 rv"><div><span class="tag">Swap</span><h3>Trade in seconds.</h3><p>Best routes across Sui, one confirmation.</p></div><div class="fl" style="right:6%;bottom:8%;width:36%"><img src="assets/3d-money.png" alt=""></div></article>
+      <article class="cell c4 rv"><div><span class="tag">Stake</span><h3>Earn while you sleep.</h3><p>Pick a validator and watch rewards land.</p></div><div class="fl" style="right:8%;bottom:8%;width:28%;animation-delay:-3s"><img src="assets/3d-thumb.png" alt=""></div></article>
+      <article class="cell c5 rv"><div><span class="tag">Remind me</span><h3>Never miss a drop.</h3><p>Alerts for rewards, airdrops and unlocks.</p></div><div class="fl" style="right:8%;bottom:8%;width:26%;animation-delay:-1.5s"><img src="assets/3d-calendar.png" alt=""></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="how">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="eyebrow">How it works</span><h2>Up and running before your coffee cools.</h2></div>
+      <p>Three steps. No seed-phrase scavenger hunt, no forms.</p>
+    </div>
+    <div class="sgrid">
+      <div class="step rv"><h3>Get Slush</h3><p>Install the extension, grab the mobile app or open the web app.</p></div>
+      <div class="step rv"><h3>Create a wallet</h3><p>Set it up in under a minute and back up your recovery phrase.</p></div>
+      <div class="step rv"><h3>Start exploring</h3><p>Add funds, swap, stake or try a DeFi strategy. You decide.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="earn" id="earn">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="eyebrow">Earn</span><h2>Make your balance do more.</h2></div>
+      <p>Strategies are listed with clear rates and risks, so you can compare before you commit.</p>
+    </div>
+    <div class="box">
+      <div class="big rv">
+        <div class="num">36.3<small>% APY</small></div>
+        <div class="list">
+          <div class="row"><b>Sui staking</b><span>3.9%</span></div>
+          <div class="row"><b>USDC lending</b><span>8.2%</span></div>
+          <div class="row"><b>Liquidity strategy</b><span>36.3%</span></div>
+        </div>
+      </div>
+      <div class="big alt rv">
+        <div><span class="tag">Heads up</span><h3 style="font-size:clamp(30px,3.4vw,48px);max-width:9em">Higher rates mean higher risk.</h3><p style="margin-top:12px;max-width:20em">Example rates shown for illustration. Always read the strategy details first.</p></div>
+        <img class="k" src="assets/phones-strategies.svg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plat" id="get">
+  <div class="wrap">
+    <div class="head rv">
+      <div><span class="eyebrow">Download</span><h2>Wherever you are, it follows.</h2></div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-t="0">Mobile</button>
+      <button role="tab" aria-selected="false" data-t="1">Web</button>
+      <button role="tab" aria-selected="false" data-t="2">Extension</button>
+    </div>
+    <div class="pane on" data-p="0">
+      <div><h3>Slush on your phone.</h3><p>Swap, stake and explore in a few taps, on iOS and Android.</p>
+        <div class="stores"><a class="store" href="#"><img src="assets/appstore.png" alt="">App Store</a><a class="store" href="#"><img src="assets/googleplay.svg" alt="">Google Play</a></div>
+        <div class="qr"><img src="assets/qr.png" alt="QR code"><span>Scan to get the app</span></div></div>
+      <div class="art"><img src="assets/phone-mobile.svg" alt=""></div>
+    </div>
+    <div class="pane" data-p="1">
+      <div><h3>Nothing to install.</h3><p>Open Slush in any browser and connect to the apps you use.</p><a class="btn btn--ink" href="#">Launch web app</a></div>
+      <div class="art"><img src="assets/web-app.svg" alt=""></div>
+    </div>
+    <div class="pane" data-p="2">
+      <div><h3>Right in your browser.</h3><p>Approve transactions without leaving the page you are on.</p>
+        <div class="stores"><a class="store" href="#"><img src="assets/chrome.png" alt="">Chrome</a><a class="store" href="#"><img src="assets/brave.svg" alt="">Brave</a><a class="store" href="#"><img src="assets/edge.svg" alt="">Edge</a><a class="store" href="#"><img src="assets/arc.svg" alt="">Arc</a></div></div>
+      <div class="art"><img src="assets/web-app.svg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head rv"><div><span class="eyebrow">Who it's for</span><h2>Crypto for humans. Not just degens.</h2></div></div>
+    <div class="three">
+      <article class="hc rv"><div><h3>Frictionless onboarding</h3><p>Create a wallet and make your first move in minutes.</p></div><img src="assets/3d-rocket.png" alt=""></article>
+      <article class="hc rv"><div><h3>For DeFi power users</h3><p>Deep strategies, clear numbers, full control.</p></div><img src="assets/3d-money.png" alt=""></article>
+      <article class="hc rv"><div><h3>For developers</h3><p>Connect your app and ship on Sui faster.</p></div><img src="assets/3d-megaphone.png" alt=""></article>
+    </div>
+  </div>
+</section>
+
+<section class="eco">
+  <div class="wrap">
+    <div class="head rv"><div><span class="eyebrow">Ecosystem</span><h2>Works with what you already love.</h2></div></div>
+    <div class="tiles rv">
+      <img src="assets/eco-whale.png" alt=""><img src="assets/eco-usdc.png" alt=""><img src="assets/eco-fish.png" alt=""><img src="assets/eco-birds.png" alt="">
+      <img src="assets/eco-luckykat.png" alt=""><img src="assets/eco-spiral.png" alt=""><img src="assets/eco-drop.png" alt=""><img src="assets/eco-arrow.png" alt="">
+      <img src="assets/eco-chat.png" alt=""><img src="assets/eco-tk.png" alt=""><img src="assets/eco-ns.png" alt=""><img src="assets/eco-rootlets.png" alt="">
+      <img src="assets/eco-blue-egg.png" alt=""><img src="assets/eco-mint-egg.png" alt="">
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <div class="rv"><span class="eyebrow">FAQ</span><h2>Good questions.</h2></div>
+    <div class="rv">
+      <details open><summary>Is Slush free to use?</summary><p>Yes. The wallet is free. Network fees and some protocol fees still apply when you transact.</p></details>
+      <details><summary>Who holds my funds?</summary><p>You do. Your keys stay on your device and we cannot access or move your assets.</p></details>
+      <details><summary>What if I lose my phone?</summary><p>Restore your wallet on any device with your recovery phrase. Keep it offline and never share it.</p></details>
+      <details><summary>Are the rates guaranteed?</summary><p>No. Rates change and every strategy carries risk, including loss of funds. This is not financial advice.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap"><div class="panel">
+    <h2>Ready when you are.</h2>
+    <div class="fl"><img src="assets/3d-rocket.png" alt=""></div>
+    <div class="fl"><img src="assets/3d-thumb.png" alt=""></div>
+    <div class="row2"><a class="btn btn--ink" href="#get">Get Slush</a><a class="btn btn--ghost" href="#get">Launch web app</a></div>
+  </div></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><h4>Product</h4><a href="#features">Features</a><a href="#earn">Earn</a><a href="#get">Download</a></div>
+      <div><h4>Learn</h4><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="#">Guides</a></div>
+      <div><h4>Community</h4><a href="#">Discord</a><a href="#">X</a><a href="#">YouTube</a></div>
+      <p class="fine">Demo design concept. Rates and figures are examples only. Crypto involves risk and nothing here is financial advice.</p>
+    </div>
+    <div class="word" aria-hidden="true">Slush</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  b.addEventListener('click',function(){var o=nav.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'×':'+'});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');b.textContent='+'}});
+  var tabs=document.querySelectorAll('.tabs button'),panes=document.querySelectorAll('.pane');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===t)});
+    panes.forEach(function(p){p.classList.toggle('on',p.dataset.p===t.dataset.t)});
+  })});
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  } else els.forEach(function(e){e.classList.add('in')});
+})();
+</script>
+</body>
+</html>
